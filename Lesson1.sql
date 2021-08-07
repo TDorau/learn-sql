@@ -42,3 +42,25 @@ ORDER BY account_id, total_amt_usd DESC;
 SELECT ID, account_id, total_amt_usd
 FROM orders
 ORDER BY total_amt_usd DESC, account_id;
+
+/*
+WHERE
+Allows to filter a set of results based on specific criteria
+(e.g. WHERE account_id = 4251)
+Common symbols: >, <, >=, <=, =, != (not equal to)
+Works on nun-numeric data with LIKE, NOT, IN, =, !=
+When using an operator on a value that is non-numeric, put the value in single quotes
+*/
+SELECT *
+FROM orders
+WHERE gloss_amt_usd >= 1000
+LIMIT 5;
+
+SELECT *
+FROM orders
+WHERE total_amt_usd <= 500
+LIMIT 10;
+
+SELECT name, website, primary_poc
+FROM accounts
+WHERE name = 'Exxon Mobil';
