@@ -64,3 +64,19 @@ LIMIT 10;
 SELECT name, website, primary_poc
 FROM accounts
 WHERE name = 'Exxon Mobil';
+
+/*
+Derived Column
+A new column that is a manipulation of the existing columns in the database
+(e.g. gloss_qty + poster_qty AS nonstandard_qty)
+Mostly exist only for the duration of the query
+*/
+
+SELECT id, account_id, standard_amt_usd / standard_qty AS unit_price
+FROM orders
+LIMIT 10;
+
+SELECT id, account_id,
+    poster_amt_usd/(standard_amt_usd + gloss_amt_usd + poster_amt_usd) AS post_per
+FROM orders
+LIMIT 10;
