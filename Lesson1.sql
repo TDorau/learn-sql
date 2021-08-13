@@ -80,3 +80,20 @@ SELECT id, account_id,
     poster_amt_usd/(standard_amt_usd + gloss_amt_usd + poster_amt_usd) AS post_per
 FROM orders
 LIMIT 10;
+
+/*
+Like operator
+Especially for text, WHERE = would be too specific and not return anything
+*/
+
+SELECT name
+FROM accounts
+WHERE name LIKE 'C%';
+
+SELECT name
+FROM accounts
+WHERE name LIKE '%one%';
+
+SELECT name
+FROM accounts
+WHERE name LIKE '%s';
