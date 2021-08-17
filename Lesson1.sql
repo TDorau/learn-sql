@@ -177,3 +177,54 @@ FROM accounts
 WHERE (name LIKE 'C%' OR name LIKE 'W%') 
            AND ((primary_poc LIKE '%ana%' OR primary_poc LIKE '%Ana%') 
            AND primary_poc NOT LIKE '%eana%');
+
+/*
+JOIN clause
+Tells Query an additional table from to pull data like a second FROM clause
+Always have the primary key =  the foreign key
+ON clause 
+Specifies a logical statement to combinte the table in FROM and JOIN statements
+ALIAS
+To shorten the name of a table, will be created in the FROM or JOIN class
+*/
+
+SELECT orders.*
+FROM orders
+JOIN accounts
+ON orders.account_id = accounts.id;
+
+SELECT orders.*, accounts.*
+FROM accounts
+JOIN orders
+ON accounts.id = orders.account_id;
+
+SELECT orders.standard_qty, orders.gloss_qty, 
+       orders.poster_qty,  accounts.website, 
+       accounts.primary_poc
+FROM orders
+JOIN accounts
+ON orders.account_id = accounts.id
+
+SELECT a.primary_poc, w.occurred_at, w.channel, a.name
+FROM web_events w
+JOIN accounts a
+ON w.account_id = a.id
+WHERE a.name = 'Walmart';
+
+SELECT r.name region, s.name rep, a.name account
+FROM sales_reps s
+JOIN region r
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+ORDER BY a.name;
+
+SELECT r.name region, a.name account, 
+       o.total_amt_usd/(o.total + 0.01) unit_price
+FROM region r
+JOIN sales_reps s
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+JOIN orders o
+ON o.account_id = a.id;
