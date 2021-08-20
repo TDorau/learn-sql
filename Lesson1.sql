@@ -186,6 +186,8 @@ ON clause
 Specifies a logical statement to combinte the table in FROM and JOIN statements
 ALIAS
 To shorten the name of a table, will be created in the FROM or JOIN class
+OPTIONS
+LEFT JOIN, RIGHT JOIN, OUTER JOIN
 */
 
 SELECT orders.*
@@ -228,3 +230,13 @@ JOIN accounts a
 ON a.sales_rep_id = s.id
 JOIN orders o
 ON o.account_id = a.id;
+
+SELECT c.countryid, c.countryName, s.stateName
+FROM Country c
+JOIN State s
+ON c.countryid = s.countryid;
+
+SELECT c.countryid, c.countryName, s.stateName
+FROM Country c
+LEFT JOIN State s
+ON c.countryid = s.countryid;
